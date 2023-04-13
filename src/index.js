@@ -1,10 +1,11 @@
 import './styles/main.scss';
-import { leaderboard } from './modules/leaderboard.js';
+import { addScore, displayScores } from './modules/leaderboard';
 
 const scoresList = document.getElementById('scoresList');
-const leaderboardDisplay = (name, score) => `<div class="leaderboard-container">${name}: ${score}</div>`;
-
-leaderboard.forEach((leader) => {
-  const htmlToAdd = leaderboardDisplay(leader.name, leader.score);
-  scoresList.insertAdjacentHTML('afterbegin', htmlToAdd);
+const refreshBtn = document.getElementById('refreshBtn');
+refreshBtn.addEventListener('click', () => {
+  scoresList.innerHTML = '';
+  displayScores();
 });
+addScore();
+displayScores();
