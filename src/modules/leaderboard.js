@@ -1,8 +1,10 @@
+// eslint-disable-next-line import/no-duplicates
 import 'regenerator-runtime/runtime';
 
+const scoresList = document.getElementById('scoresList');
+const url = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/MLSvdvsD12/scores/';
 const addScore = () => {
   const scoreForm = document.getElementById('scoreForm');
-  const url = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/MLSvdvsD1/scores/';
   scoreForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     const playerName = document.getElementById('name-input').value;
@@ -28,8 +30,20 @@ const addScore = () => {
   });
 };
 
-const displayScores = () => {
-  
+const listHtml = (user, score) => `<div class="leaderboard-container">${user}: ${score}</div>`;
+const displayScores = async () => {
+  try {
+    await fetch(url)
+      .then((result) => result.json())
+      .then((data) => {
+        data.result.forEach((player) => {
+          const htmlToAdd = listHtml(player.user, player.score);
+          scoresList.insertAdjacentHTML('afterbegin', htmlToAdd);
+        });
+      });
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export { addScore, displayScores };
