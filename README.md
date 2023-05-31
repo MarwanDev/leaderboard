@@ -53,7 +53,7 @@ HTML, CSS and JavaScript Leaderboard Project
 Coming soon!
 
 ## 🚀 Live Demo <a name="live-demo"></a>
-Coming Soon
+Click <a href="https://marwandev.github.io/leaderboard/">here</a> for the live demo
 
 
 ## 💻 Getting Started <a name="getting-started"></a>
